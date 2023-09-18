@@ -1,0 +1,22 @@
+<h1>商品一覧</h1>
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Sale</th>
+      <th>Genres</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td>
+        </td>
+        <td><%= link_to item.name,item %></td>
+        <td><%= item.sale %></td>
+        <td></td>
+    <% end %>
+  </tbody>
+</table>
