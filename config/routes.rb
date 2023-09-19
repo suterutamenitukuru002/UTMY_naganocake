@@ -37,6 +37,9 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'homes/about' => 'homes#about'
+
+    # 商品ページを作成する際に必要
+    resources :items, only: %i[index show]
   end
 
 
