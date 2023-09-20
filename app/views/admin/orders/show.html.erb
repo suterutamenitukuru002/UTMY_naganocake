@@ -1,0 +1,65 @@
+<h1>注文履歴詳細</h1>
+　<table class="table">
+
+ <thead>
+  <tr>
+  <th>購入車</th>
+  <th>注文日</th>
+  <th>配送先</th>
+  <th>支払方法</th>
+  <th>注文ステータス</th>
+  </tr>
+ </thead>
+
+<tbody>
+ <td><%= @customer.full_name %></td>
+  <td><%= @orders.created_at.strftime('%Y/%m/%d') %></td>
+ <td><%= @orders.address %></td>
+ <td><%= @orders.payment_method %></td>
+ <td><%= @orders.status %></td>
+ <td><%= f.submit "更新" class: 'btn btn-info' %></td>
+ <% end %>
+</tbody>
+
+</table>
+
+<table class="table">
+
+ <thead>
+  <tr>
+  <th>商品名</th>
+  <th>単価（税込）</th>
+  <th>数量</th>
+  <th>小計</th>
+  <th>製作ステータス</th>
+  </tr>
+ </thead>
+
+<tbody>
+ <td><%= @order_derails.item.name %></td>
+  <td><%= @order_derails.price %></td>
+ <td><%= @order_derails.quantity %></td>
+ <td><%= @order_derails.price %>*<%= order_derails.quantity %></td>
+ <td><%= @order_derails.making_status %></td>
+ <td><%= f.submit "更新" class: 'btn btn-info' %></td>
+ <% end %>
+</tbody>
+
+</table>
+
+<table class="table">
+ .
+  <tr>
+  <th>商品合計</th>
+  <th>送料</th>
+  <th>請求金額合計</th>
+  </tr>
+  <tbody>
+  <tr><% @order_derails.each do |order_derails| %></tr>
+  <td></td>
+  <td><%= order.postage %></td>
+  <td><%= order.billing_amount %></td>
+
+  </tbody>
+
+
