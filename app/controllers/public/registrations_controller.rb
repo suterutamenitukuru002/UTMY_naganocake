@@ -7,8 +7,20 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #サインアップ後の遷移先を指定する方法
   def after_sign_up_path_for(resource)
     #遷移先のパス
-    homes_about_path
+    public_customers_mypage_path
   end
+
+  def update
+    @customer = Customer.all
+      if @customer.update(mypage_params)
+        flash[:notice] = "You have updated mypage successfully."
+        redirect_to public_customers_mypage_path
+      else
+      render :edit
+      end
+  end
+  
+  
 
   # GET /resource/sign_up
   # def new
@@ -70,5 +82,6 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
      def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:family_name, :first_name, :family_name_kana, :first_name_kana,:email, :postcode, :telephone_number, :address])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:family_name, :first_name, :family_name_kana, :first_name_kana,:email, :postcode, :telephone_number, :address])
      end
 end
