@@ -11,7 +11,22 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-   resources :items, only: [:index, :show,:new, :edit, :create, :update]
+   resources :items, only: [:index, :show, :new, :edit, :create, :update]
   end
 
+  namespace :admin do
+    resources :genres, only: [:index, :edit, :create, :update]
+  end
+
+  namespace :admin do
+    get 'homes/top'
+  end
+  namespace :admin do
+    get 'orders/show'
+  end
+  namespace :admin do
+    get 'customers/index'
+    get 'customers/show'
+    get 'customers/edit'
+  end
 end
