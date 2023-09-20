@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
   # 配送先情報
-  namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
-  end
+  # namespace :public do
+  #   # get 'addresses/index'
+  #   # get 'addresses/:id/edit',to: 'addresses#edit'
+  #   # patch 'addresses/:id', to: 'addresses#update'
+  #   # post 'addresses/create'
+  #   # delete '/addresses/:id', to: 'addresses#destroy'
+  # end
 
   # 注文情報
   namespace :public do
@@ -22,9 +25,11 @@ Rails.application.routes.draw do
 
   # 顧客情報ページ
   namespace :public do
-    get 'customers/show'
+    get 'customers/mypage'
     get 'customers/edit'
     get 'customers/check'
+    patch 'customers/is_withdraw'
+    patch 'customers/infomation'
   end
 
 
@@ -37,6 +42,8 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'homes/about' => 'homes#about'
+
+    resources :addresses,only: [:index,:create,:edit,:update,:destroy]
   end
 
 
