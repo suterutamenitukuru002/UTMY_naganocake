@@ -1,5 +1,4 @@
-<%= render "layouts/header" %>
-<div class='container'>
+<div class=container>
   <div class=row>
     <div class='col-md-3'>
       <ul>
@@ -11,14 +10,12 @@
       </ul>
     </div>
     <div class='col-md-8'>
-      <%= image_tag 'naganocake_image/cookies.jpg', size: '600x400' %>
-      <h3>新着情報</h3>
-      <p>ここに画像が入る予定</p>
-      <%= link_to 'すべての商品を見る > ', items_path %>
+      <%= image_tag 'naganocake_image/cake.jpg', size: '350x250' %>
+      <h2>いちごのショートケーキ</h2>
+      <p>栃木県産のとちおとめを贅沢に使用しています。</p>
     </div>
+
+    <%= link_to 'カートに入れる', public_cart_items_index_path %>
+
   </div>
-
-
 </div>
-
-
