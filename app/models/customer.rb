@@ -5,6 +5,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
  
   has_many :addresses, dependent: :destroy
+
  
   validates :family_name, :first_name, :family_name_kana, :first_name_kana, :postcode, :address, :telephone_number, presence: true
 
@@ -12,4 +13,6 @@ class Customer < ApplicationRecord
   def active_for_authentication?
     super && (is_deleted == false)
   end
+
+  has_many :orders, dependent: :destroy
 end

@@ -16,13 +16,17 @@
   <tbody>
       <tr>
         <td><%= @customers.id %></td>
-        <td><%= @customer.family_name %> <%= @customer.filst_name %></td>
-        <td><%= @customer.family_name_kana %> <%= @customer.filst_name_kana %></td>
+        <td><%= @customers.family_name %> <%= @customers.filst_name %></td>
+        <td><%= @customers.family_name_kana %> <%= @customers.filst_name_kana %></td>
         <td><%= @customers.postcode %></td>
         <td><%= @customers.address %></td>
         <td><%= @customers.telephone_number %></td>
         <td><%= @customers.email %></td>
-        <td><%= @customers.is_deleted %></td>
+        <td><% if @customers.is_deleted == false %>
+        有効
+        <% else %>
+        退会
+        <% end %></td>
   </tbody>
 
   <td><%= link_to "編集する", edit_admin_customer_path, class: 'nav-link text-dark' %></td>
