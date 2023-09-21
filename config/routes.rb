@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   # 配送先情報
   # namespace :public do
   #   # get 'addresses/index'
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
   }
 
+
   # 会員側のルーティング設定
   scope module: :public do
     root to: 'homes#top'
@@ -50,10 +52,10 @@ Rails.application.routes.draw do
     resources :addresses,only: [:index,:create,:edit,:update,:destroy]
   end
 
-
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
-  }
+}
+
 
   namespace :admin do
    resources :items, only: [:index, :show, :new, :edit, :create, :update]
@@ -70,8 +72,6 @@ Rails.application.routes.draw do
     get 'orders/show'
   end
   namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
+    resources :customers, only: [:index, :edit, :show, :update]
   end
 end
