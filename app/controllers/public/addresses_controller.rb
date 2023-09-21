@@ -3,7 +3,7 @@ class Public::AddressesController < ApplicationController
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
     @address.save
-    flash[:notice] = "You have created address successfully."
+    flash[:notice] = "配送先を追加しました。"
     redirect_to  addresses_path
   end
 
@@ -20,7 +20,7 @@ class Public::AddressesController < ApplicationController
   def update
     @address = Address.find(params[:id])
       if @address.update(address_params)
-        flash[:notice] = "You have updated addresses successfully."
+        flash[:notice] = "配送先情報を変更出来ました。"
         redirect_to addresses_path
       end
   end
