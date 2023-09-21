@@ -23,10 +23,7 @@ class Customer < ApplicationRecord
 
   has_many :orders, dependent: :destroy
 
-  def full_name
-    self.family_name + " " + self.first_name
-  end
-  def full_name_kana
-    self.family_name_kana + " " + self.first_name_kana
-  end
+
+
+  has_many :cart_items, dependent: :destroy
 end

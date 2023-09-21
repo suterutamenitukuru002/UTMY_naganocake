@@ -50,6 +50,14 @@ Rails.application.routes.draw do
     # 商品ページを作成する際に必要
     resources :items, only: %i[index show]
     resources :addresses,only: [:index,:create,:edit,:update,:destroy]
+
+    # カートページ作成
+    resources :cart_items, only: %i[index create destroy] do
+      member do
+        patch 'increase'
+        patch 'decrease'
+      end
+    end
   end
 
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
