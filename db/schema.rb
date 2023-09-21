@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_21_011925) do
+ActiveRecord::Schema.define(version: 2023_09_20_142613) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -75,14 +75,6 @@ ActiveRecord::Schema.define(version: 2023_09_21_011925) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "family_name", default: "", null: false
-    t.string "first_name", default: "", null: false
-    t.string "family_name_kana", default: "", null: false
-    t.string "first_name_kana", default: "", null: false
-    t.string "postcode", default: "", null: false
-    t.string "telephone_number", default: "", null: false
-    t.string "address", default: "", null: false
-    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -115,6 +107,17 @@ ActiveRecord::Schema.define(version: 2023_09_21_011925) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_order_details_on_item_id"
     t.index ["order_id"], name: "index_order_details_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "address", default: "", null: false
+    t.string "address_name", default: "", null: false
+    t.string "postcode", default: "", null: false
+    t.string "payment_method", default: "", null: false
+    t.integer "billing_amount", null: false
+    t.integer "postage", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
