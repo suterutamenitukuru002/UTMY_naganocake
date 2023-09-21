@@ -31,15 +31,16 @@
     <div class="flex flex-wrap justify-center">
       <!--繰り返し処理が必要-->
       <% @items.each do |item| %>
-        <% if item.genre.is_sale_status == true %>
+        <!--<%# if item.genre.is_sale_status == true %>-->
           <div>
             <%= link_to item_path(item) do %>
-              <%= attachment_image_tag item, :image, fallback: 'no_image.jpg', size: "190x150" %><br>
+              <%= image_tag item.image, fallback: 'no_image.jpg', size: "190x150" %><br>
+
             <% end %>
             <%= item.name %><br>
             ¥<%= (item.price*1.1).floor.to_s(:delimited)%>(税込)
           </div>
-        <% end %>
+        <!--<%# end %>-->
       <% end %>
       <!--ページネーションが必要-->
       <%#= paginate @items %>
