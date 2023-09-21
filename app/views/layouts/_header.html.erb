@@ -1,29 +1,53 @@
-<header>
-  <% if customer_signed_in? %>
-  ようこそ、<%= current_customer.family_name %>さん！
-  <li>
-      <%= link_to "マイページ", public_customers_mypage_path(current_customer) %>
-  </li>
-  <li>
-      <%= link_to "カート", public_cart_items_index_path %>
-  </li>
-  <li>
-      <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-  </li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+<div class="container">
+  <div class="row">
+    <!--ロゴ部分-->
+    <nav class="nav navbar-nav navbar-left">
+      <% if admin_signed_in? %>
+        <%= link_to image_tag("logo.png",size:19*11, class: "image"), admin_homes_top_path %>
+      <% else %>
+        <%= link_to image_tag("logo.png",size:19*11, class: "image"), root_path %>
+      <% end %>
 
-  <% else %>
-    <li>
-      <%= link_to "About", homes_about_path %>
-    </li>
-    <!--  <li>-->
-    <!--  <%#= link_to "商品一覧", %>-->
-    <!--</li>-->
-    <li>
-      <%= link_to "新規登録", new_customer_registration_path %>
-    </li>
-    <li>
-      <%= link_to "ログイン", new_customer_session_path %>
-    </li>
+     </nav>
+      <ul class="navbar-nav ml-auto">
+        <% if customer_signed_in? %>
+          <!--カスタマーがログインしている時-->
+          <li>ようこそ、<%= current_customer.family_name %>さん！</li>
+          <li><%= link_to "マイページ", public_customers_mypage_path(current_customer),class: 'nav-link text-light' %></li>
+          <li><%= link_to "商品一覧",items_path,class: 'nav-link text-light' %></li>
+          <li><%= link_to "カート", public_cart_items_index_path,class: 'nav-link text-light' %></li>
+          <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'nav-link text-light' %></li>
 
-  <% end %>
-</header>
+        <% elsif admin_signed_in? %>
+        <!--管理者がログインしている時 -->
+          <li><%= link_to "商品一覧",admin_items_path,class: 'nav-link text-light' %></li>
+          <li><%= link_to "会員一覧",admin_customers_path,class: 'nav-link text-light' %></li>
+          <!--<li><%#= link_to "注文履歴一覧",  %></li>-->
+          <li><%= link_to "ジャンル一覧", admin_genres_path,class: 'nav-link text-light' %></li>
+          <li><%= link_to "ログアウト", destroy_admin_session_path , method: :delete,class: 'nav-link text-light' %></li>
+
+
+    <% elsif admin_signed_in? %>
+
+    <li><%= link_to "商品一覧", admin_items_path  %></li>
+    <li><%= link_to "会員一覧", admin_customers_path %></li>
+    <li><%= link_to "注文履歴一覧", admin_homes_top_path %></li>
+    <li><%= link_to "ジャンル一覧", admin_genres_path %></li>
+    <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+
+
+
+        <% else %>
+          <!--カスタマーがログインしていない時-->
+          <li><%= link_to "About", homes_about_path,class: 'nav-link text-light' %></li>
+          <li><%= link_to "商品一覧",items_path,class: 'nav-link text-light' %></li>
+          <li><%= link_to "新規登録", new_customer_registration_path,class: 'nav-link text-light' %></li>
+          <li><%= link_to "ログイン", new_customer_session_path,class: 'nav-link text-light' %></li>
+        <% end %>
+      </ul>
+    </ul>
+  </div>
+</div>
+</nav>
+

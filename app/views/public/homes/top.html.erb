@@ -1,6 +1,6 @@
-<%= render "layouts/header" %>
+
 <div class='container'>
-  <div class=row>
+  <div class='row'>
     <div class='col-md-3'>
       <ul>
         <li><strong>ジャンル検索</strong></li>
@@ -10,15 +10,30 @@
         <li><%= link_to 'キャンディ' %></li>
       </ul>
     </div>
-    <div class='col-md-8'>
-      <%= image_tag 'naganocake_image/cookies.jpg', size: '600x400' %>
+    <div class="col-md-9">
+      <div>
+        <%= image_tag 'naganocake_image/cookies.jpg', size: '600x400' %>
+      </div>
       <h3>新着情報</h3>
-      <p>ここに画像が入る予定</p>
-      <%= link_to 'すべての商品を見る > ', items_path %>
+      <div>
+        <p>ここに画像が入る予定</p>
+        <% @ramdom.each do |item| %>
+          <div>
+            <!--<%# if item.genre.is_sale_status == true %>-->
+              <!--<%# if item.is_sale_status == true %>-->
+                <%= link_to item_path(item) do %>
+                  <%= image_tag item.image, fallback: 'no_image.jpg', size:'200x200' %><br>
+                <% end %>
+                <p><%= item.name %></p>
+                <p>¥<%= (item.price*1.1).floor.to_s(:delimited)%>(税込)</p>
+            <!--  <%# end %>-->
+            <!--<%# end %>-->
+          </div>
+        <% end %>
+      </div>
+      <div><%= link_to 'すべての商品を見る > ', items_path %></div>
     </div>
   </div>
-
-
 </div>
 
 

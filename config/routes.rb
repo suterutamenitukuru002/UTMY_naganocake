@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   # 配送先情報
   # namespace :public do
   #   # get 'addresses/index'
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
   }
 
+
   # 会員側のルーティング設定
   scope module: :public do
     root to: 'homes#top'
@@ -48,12 +50,20 @@ Rails.application.routes.draw do
     # 商品ページを作成する際に必要
     resources :items, only: %i[index show]
     resources :addresses,only: [:index,:create,:edit,:update,:destroy]
+
+    # カートページ作成
+    resources :cart_items, only: %i[index create destroy] do
+      member do
+        patch 'increase'
+        patch 'decrease'
+      end
+    end
   end
 
-
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
-  }
+}
+
 
   namespace :admin do
    resources :items, only: [:index, :show, :new, :edit, :create, :update]
@@ -70,8 +80,6 @@ Rails.application.routes.draw do
     get 'orders/show'
   end
   namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
+    resources :customers, only: [:index, :edit, :show, :update]
   end
 end

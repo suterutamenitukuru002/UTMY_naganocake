@@ -1,23 +1,55 @@
-<div class="mb-8 text-center">
-  <span class="text-3xl font-bold">
-    商品一覧  全<%#= count%>〜件
-  </span>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%#= render 'admin/genres/genre_sidebar', genres: @genres %>
+    </div>
+    <div class="col-md-9">
+      <h1 class="product-title">
+        <% if params[:genre_id] %>
+          <%= @genre.name %>
+        <% else %>
+          すべての商品
+        <% end %>
+      </h1>
+      <strong> 全<%= @items.count %>件 </strong>
+    </div>
+
+    <!--最新、高価格、低価格のボタン設置-->
+    <div class="flex flex-wrap justify-center md:justify-start px-5">
+      <div class="mb-3 w-fit text-md font-medium mr-2 px-4 py-1.5 rounded <%= @sort === "latest" ? "bg-gray-800 text-gray-100" : "bg-gray-100 text-gray-800" %>">
+        <%= link_to 'Latest', items_path(latest: true) %>
+      </div>
+      <div class="mb-3 w-fit text-md font-medium mr-2 px-4 py-1.5 rounded <%= @sort === "price_high_to_low" ? "bg-gray-800 text-gray-100" : "bg-gray-100 text-gray-800" %>">
+        <%= link_to 'Price: High to Low', items_path(price_high_to_low: true) %>
+      </div>
+      <div class="mb-3 w-fit text-md font-medium mr-2 px-4 py-1.5 rounded <%= @sort === "price_low_to_high" ? "bg-gray-800 text-gray-100" : "bg-gray-100 text-gray-800" %>">
+        <%= link_to 'Price: Low to High', items_path(price_low_to_high: true) %>
+      </div>
+    </div>
+
+    <!--画像横並び-->
+    <div class="flex flex-wrap justify-center">
+      <!--繰り返し処理が必要-->
+      <% @items.each do |item| %>
+        <!--<%# if item.genre.is_sale_status == true %>-->
+          <div>
+            <%= link_to item_path(item) do %>
+              <%= image_tag item.image, fallback: 'no_image.jpg', size: "190x150" %><br>
+
+            <% end %>
+            <%= item.name %><br>
+            ¥<%= (item.price*1.1).floor.to_s(:delimited)%>(税込)
+          </div>
+        <!--<%# end %>-->
+      <% end %>
+      <!--ページネーションが必要-->
+      <%#= paginate @items %>
+    </div>
+  </div>
 </div>
 
-<!--最新、高価格、低価格のボタン設置-->
 
 
-<!--画像横並び-->
-<div class='flex flex-wrap justify-center'>
-  <!--繰り返し処理が必要-->
 
-  <a href="/items/:id"><%= image_tag 'naganocake_image/cake.jpg', size: '200x150' %></a>
-  <%= image_tag 'naganocake_image/cake2.jpg', size: '200x150' %>
-  <%= image_tag 'naganocake_image/cake4.jpg', size: '200x150' %>
-  <br>
-  <%= image_tag 'naganocake_image/cake5.jpg', size: '200x150' %>
-  <%= image_tag 'naganocake_image/cake6.jpg', size: '200x150' %>
 
-  <!--ページネーションが必要-->
 
-</div>
