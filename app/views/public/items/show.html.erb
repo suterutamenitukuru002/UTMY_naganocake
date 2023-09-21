@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col-md-7">
           <div>
-            <%= attachment_image_tag @item, :image, size:'500x400', fallback: 'no_image.jpg', size:'500x400' %>
+            <%= image_tag @item.image, size:'500x400', fallback: 'no_image.jpg', size:'500x400' %>
           </div>
         </div>
 
@@ -34,13 +34,6 @@
           </div>
         </div>
       </div>
-
-      <%= image_tag 'naganocake_image/cake.jpg', size: '350x250' %>
-      <h2>いちごのショートケーキ</h2>
-      <p>栃木県産のとちおとめを贅沢に使用しています。</p>
     </div>
-
-    <%= link_to 'カートに入れる', public_cart_items_index_path %>
-
   </div>
 </div>
