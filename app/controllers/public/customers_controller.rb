@@ -10,7 +10,7 @@ class Public::CustomersController < ApplicationController
   def infomation
     @customer = Customer.all
       if @customer.update(mypage_params)
-        flash[:notice] = "You have updated mypage successfully."
+        flash[:notice] = "会員情報を更新出来ました。"
         redirect_to public_customers_mypage_path
       else
       render :edit
@@ -22,9 +22,12 @@ class Public::CustomersController < ApplicationController
   end
 
   def is_withdraw
-    current_customer.update(status: 'withdrawn')
+    @customer = Customer.find(current_customer.id)
+    # is_deletedカラムをtrueに変更することにより削除フラグを立てる
+    @customer.update(is_deleted: true)
     reset_session
-    redirect_to root_path, notice: 'Successfully withdraw from Ecommerce'
+    flash[:notice] = "退会処理を実行いたしました"
+    redirect_to root_path
   end
 
   private
