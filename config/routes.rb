@@ -19,10 +19,7 @@ Rails.application.routes.draw do
     get 'orders/complete'
   end
 
-  # カート内商品
-  namespace :public do
-    get 'cart_items/index'
-  end
+
 
   # 顧客情報ページ
   namespace :public do
@@ -53,12 +50,8 @@ Rails.application.routes.draw do
 
     # カートページ作成
     delete :cart_items, to: 'cart_items#destroy_all'
-    resources :cart_items, only: %i[index create destroy] do
-      member do
-        patch 'increase'
-        patch 'decrease'
-      end
-    end
+    resources :cart_items, only: [:index, :create, :destroy, :update]
+
     get '/genre/search' => 'searches#genre_search'
   end
 
