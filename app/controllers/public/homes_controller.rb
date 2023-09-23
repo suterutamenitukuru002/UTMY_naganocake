@@ -5,7 +5,7 @@ class Public::HomesController < ApplicationController
     # itemsの新着順にするコード追加する
     @ramdom = Item.order(sort_at: :desc).limit(4)
     # Genre.allの記述が必要
-    @genres = Genre.where(is_active: true)
+    @genres = Genre.all
   end
 
   def about
