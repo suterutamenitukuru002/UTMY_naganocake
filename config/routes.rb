@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get 'orders/show'
     get 'orders/check'
     get 'orders/complete'
+    post 'orders/create'
   end
 
 
