@@ -1,11 +1,13 @@
 class Item < ApplicationRecord
   belongs_to :genre
+  has_many :orders, dependent: :destroy
+  has_many :cart_items, dependent: :destroy
   has_one_attached :image
 
 
    scope :price_high_to_low, -> { order(price: :desc) }
    scope :price_low_to_high, -> { order(price: :asc) }
-   has_many :cart_items, dependent: :destroy
+
 
    def total_price
 		item.price * amount
