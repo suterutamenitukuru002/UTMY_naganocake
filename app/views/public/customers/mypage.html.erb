@@ -1,49 +1,57 @@
 <div class="container">
-<p id="notice"><%= notice %></p>
+  <div class = "row">
+    <div class ="col-lg-4">
 
-<h2>マイページ</h2>
+          <h4><b>登録情報</b></h4>
+            <%= link_to "編集する", public_customers_edit_path, class: 'btn btn-success'%>
 
-    <h3><b>登録情報</b></h3>
-    <%= link_to "編集する", public_customers_edit_path, class: 'btn btn-success'%>
+              <table>
+                <tr>
+                  <td>配送先</td>
+                  <td><%= link_to "一覧を見る", addresses_path, class: 'btn btn-info' %></td>
+                </tr>
+                <tr>
+                  <td>注文履歴</td>
+                  <td><%= link_to "一覧を見る", public_orders_index_path, class: 'btn btn-info' %></td>
+              </table>
+                <p id="notice"><%= notice %></p>
+                <%= image_tag 'Cutlery.png',size:'10,30' %>
+      </div>
 
-<table class="table table-bordered">
-  <tr>
-    <td>氏名</td>
-    <td><%= @customer.full_name %></td>
-  </tr>
-
-  <tr>
-    <td>カナ</td>
-    <td><%= @customer.full_name_kana %></td>
-  </tr>
-
-  <tr>
-    <td>郵便番号</td>
-    <td><%= @customer.postcode %></td>
-  </tr>
-
-  <tr>
-    <td>住所</td>
-    <td><%= @customer.address %></td>
-  </tr>
-
-  <tr>
-    <td>電話番号</td>
-    <td><%= @customer.telephone_number %></td>
-  </tr>
-
-  <tr>
-    <td>メールアドレス</td>
-    <td><%= @customer.email %></td>
-  </tr>
-</table>
-  <table>
+<div class = "col-lg-8">
+  <table class="table table-bordered">
     <tr>
-      <td>配送先</td>
-      <td><%= link_to "一覧を見る", addresses_path, class: 'btn btn-info' %></td>
+      <td>氏名</td>
+      <td><%= @customer.full_name %></td>
     </tr>
+
     <tr>
-      <td>注文履歴</td>
-      <td><%= link_to "一覧を見る", public_orders_index_path, class: 'btn btn-info' %></td>
+      <td>カナ</td>
+      <td><%= @customer.full_name_kana %></td>
+    </tr>
+
+    <tr>
+      <td>郵便番号</td>
+      <td><%= @customer.postcode %></td>
+    </tr>
+
+    <tr>
+      <td>住所</td>
+      <td><%= @customer.address %></td>
+    </tr>
+
+    <tr>
+      <td>電話番号</td>
+      <td><%= @customer.telephone_number %></td>
+    </tr>
+
+    <tr>
+      <td>メールアドレス</td>
+      <td><%= @customer.email %></td>
+    </tr>
   </table>
+
 </div>
+</div>
+</div>
+
