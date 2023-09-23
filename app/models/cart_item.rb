@@ -1,6 +1,7 @@
 class CartItem < ApplicationRecord
   belongs_to :customer
   belongs_to :item
+  belongs_to :order
 
 	def add_item(item_id)
 		current_item = items.find_by_item_id(item_id)

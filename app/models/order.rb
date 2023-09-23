@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :custmers
+  belongs_to :item
   def full_name
     self.family_name + " " + self.first_name
   end
