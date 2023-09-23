@@ -74,7 +74,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   end
 
   namespace :admin do
-    get 'homes/top'
+    root to: 'homes#top'
   end
   namespace :admin do
     get 'orders/show'
@@ -82,4 +82,5 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   namespace :admin do
     resources :customers, only: [:index, :edit, :show, :update]
   end
+
 end

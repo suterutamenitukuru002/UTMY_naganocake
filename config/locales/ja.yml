@@ -1,0 +1,19 @@
+ja:
+    enums:
+      order:
+        order_status:
+          waiting: "入金待ち"
+          transfer: "入金確認"
+          in_maiking: "制作中"
+          preparing: "発送準備中"
+          shipped: "発送済み"
+
+ja:
+    enums:
+      order_derails:
+        making_status:
+          making_impossible: "着手不可"
+          making_pending: "制作待ち"
+          in_maiking: "制作中"
+          making_complete: "作成完了"
+
