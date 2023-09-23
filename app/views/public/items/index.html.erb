@@ -15,7 +15,7 @@
     </div>
 
     <!--最新、高価格、低価格のボタン設置-->
-    <div class="flex flex-wrap justify-center md:justify-start px-5">
+    <div class="col-3">
       <div class="mb-3 w-fit text-md font-medium mr-2 px-4 py-1.5 rounded <%= @sort === "latest" ? "bg-gray-800 text-gray-100" : "bg-gray-100 text-gray-800" %>">
         <%= link_to 'Latest', items_path(latest: true) %>
       </div>
@@ -28,10 +28,10 @@
     </div>
 
     <!--画像横並び-->
-    <div class="flex flex-wrap justify-center">
       <!--繰り返し処理が必要-->
       <% @items.each do |item| %>
-        <!--<%# if item.genre.is_sale_status == true %>-->
+      <div class = "col-3">
+        <%# if item.genre.is_sale_status == true %>
           <div>
             <%= link_to item_path(item) do %>
               <%= image_tag item.image, fallback: 'no_image.jpg', size: "190x150" %><br>
@@ -39,11 +39,11 @@
             <%= item.name %><br>
             ¥<%= (item.price*1.1).floor.to_s(:delimited)%>(税込)
           </div>
+      </div>
         <!--<%# end %>-->
       <% end %>
       <!--ページネーションが必要-->
       <%#= paginate @items %>
-    </div>
   </div>
 </div>
 
