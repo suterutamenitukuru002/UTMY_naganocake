@@ -23,7 +23,7 @@ class Admin::GenresController < ApplicationController
     if @genre.update(genre_params)
      redirect_to admin_genres_path(@genre.id)
     else
-     @genre = Genre.all
+     @genres = Genre.all
      render :edit
     end
   end

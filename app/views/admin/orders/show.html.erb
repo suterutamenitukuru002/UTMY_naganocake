@@ -12,13 +12,17 @@
  </thead>
 
 <tbody>
- <td><%= @customer.full_name %></td>
+ <td><%= @orders.address_name %></td>
   <td><%= @orders.created_at.strftime('%Y/%m/%d') %></td>
  <td><%= @orders.address %></td>
  <td><%= @orders.payment_method %></td>
  <td><%= @orders.status %></td>
  <td><%= f.submit "更新" class: 'btn btn-info' %></td>
+<%= form_with model:@order, url: admin_order_path(@order), method: :patch do |f| %>
+                     <%= f.select :order_status,Order.statuses.@orders.order_status %>
+                     <%= f.submit '更新', class:"btn btn-outline-success" %>
  <% end %>
+
 </tbody>
 
 </table>
