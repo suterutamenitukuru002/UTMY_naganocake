@@ -19,7 +19,7 @@
   　     <tr>
   　      <td>
   　        <%= image_tag cart_item.item.image, format:'jpeg', fallback:"no_image.jpg", size:"50x50" %>
-  　        <%= cart_item.item.name %>
+  　        <%= cart_item.item.name%>
   　      </td>
   　      <td>
   　        ¥<%= (cart_item.item.price*1.1 ).floor.to_s(:delimited) %>
