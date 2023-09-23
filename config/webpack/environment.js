@@ -2,6 +2,10 @@ const { environment } = require('@rails/webpacker')
 
 module.exports = environment
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/develop
 // jQueryの設定
 
 const webpack = require('webpack')
@@ -13,3 +17,7 @@ environment.plugins.prepend(
     Popper: 'popper.js'
   })
 )
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/develop

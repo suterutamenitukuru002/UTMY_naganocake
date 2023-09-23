@@ -1,6 +1,7 @@
 class Public::ItemsController < ApplicationController
   def index
     @items, @sort = get_items(params)
+    @genres = Genre.all
   end
 
   def show

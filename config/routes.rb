@@ -52,12 +52,14 @@ Rails.application.routes.draw do
     resources :addresses,only: [:index,:create,:edit,:update,:destroy]
 
     # カートページ作成
+    delete :cart_items, to: 'cart_items#destroy_all'
     resources :cart_items, only: %i[index create destroy] do
       member do
         patch 'increase'
         patch 'decrease'
       end
     end
+    get '/genre/search' => 'searches#genre_search'
   end
 
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
@@ -74,7 +76,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   end
 
   namespace :admin do
-    get 'homes/top'
+    root to: 'homes#top'
   end
   namespace :admin do
     get 'orders/show'
@@ -82,4 +84,5 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   namespace :admin do
     resources :customers, only: [:index, :edit, :show, :update]
   end
+
 end
