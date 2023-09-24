@@ -8,8 +8,6 @@ ja:
           preparing: "発送準備中"
           shipped: "発送済み"
 
-ja:
-    enums:
       order_derails:
         making_status:
           making_impossible: "着手不可"

@@ -17,7 +17,7 @@
  <td><%= @orders.address %></td>
  <td><%= @orders.payment_method %></td>
  <td>
- <%= form_with model:@order, url: admin_order_path(@order), method: :patch do |f| %>
+ <%= form_with model: @order, url: admin_order_path(@order), method: :patch do |f| %>
  <%= f.select :order_status, order.order_statuses.keys.to_a, {}, class: 'form-control' %>
  <%= f.submit '更新', class:"btn btn-outline-success" %>
  </td>
@@ -46,7 +46,7 @@
  <td><%= @order_derails.price %>*<%= @order_derails.quantity %></td>
  <td><%= @order_derails.making_status %></td>
  <td>
- <%= form_with model: [:admin, @order_derails] do |f| %>
+ <%= form_with model: @order_derails, url: admin_order_detail_path(@order_details) do |f| %>
  <%= f.select :maiking_status, Order_details.maiking_statuses_i18n.invert, {}, class: 'form-control' %>
  <%= f.submit "更新", class: 'btn btn-info' %>
  </td>

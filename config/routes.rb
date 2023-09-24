@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get 'orders/new'
     get 'orders/index'
     get 'orders/show'
-    get 'orders/check'
+    post 'orders/check'
     get 'orders/complete'
     post 'orders/create'
   end
@@ -73,7 +73,11 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     root to: 'homes#top'
   end
   namespace :admin do
-    get 'orders/show'
+    resources :orders, only: [:show, :update]
+  end
+
+  namespace :admin do
+    resources :order_details, only: [:update]
   end
   namespace :admin do
     resources :customers, only: [:index, :edit, :show, :update]

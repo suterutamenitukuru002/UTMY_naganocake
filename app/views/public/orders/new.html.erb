@@ -1,5 +1,5 @@
 <h3>注文情報入力</h3>
-  <%= form_with model: @order, url: public_orders_create_path do |f| %>
+  <%= form_with model: @order, url:public_orders_check_path, method: :post do |f| %>
     <div>
       <h4><b>支払方法</b></h4>
       <%= f.radio_button :payment_method, "クレジットカード", checked: true %>

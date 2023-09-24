@@ -4,7 +4,7 @@
     <th>単価(税込)</th>
     <th>数量</th>
     <th>小計</th>
-    
+
       <% @cart_items.each do |cart_item| %>
         <tr>
           <td>
@@ -17,7 +17,7 @@
         </tr>
       <% end %>
     </table>
-    
+
       <table class="table">
       <tr>
         <td>送料</td>
@@ -32,13 +32,16 @@
         <td><%= @total_price %></td>
       </tr>
     </table>
-    
+
   　<h4><b>支払方法</b></h4>
   　  <% if @selected_pay_method == "credit_card" %>
       クレジットカード
     <% else %>
       銀行振込
     <% end %>
-      
+
       <h4><b>お届け先</b></h4>
         <%= @selected_address %>
+<%= form_with model: @order, url:public_orders_create_path, method: :post, local: true do |f| %>
+        <%= f.submit "注文を確定する" %>
+        <% end %>
