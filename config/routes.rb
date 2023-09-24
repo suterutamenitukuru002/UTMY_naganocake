@@ -15,8 +15,11 @@ Rails.application.routes.draw do
     get 'orders/new'
     get 'orders/index'
     get 'orders/show'
-    get 'orders/check'
     get 'orders/complete'
+    get 'orders/check'
+    post 'orders/check'
+    post 'orders/create'
+
   end
 
 
