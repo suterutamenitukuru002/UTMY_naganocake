@@ -1,15 +1,30 @@
 class Public::OrdersController < ApplicationController
   def new
-    @order = Order.new(order_params)
+    @order = Order.new
+    @addresses = current_customer.addresses.all
   end
 
-  def create
-    @order = Order.new(order_params)
-    @order.customer_id = current_customer.id
+def create
+  cart_items = current_customer.cart_items.all
+  @order = current_customer.orders.new(order_params)
+  if @order.save!
 
-    @order.save
-    redirect_to public_orders_check_path
+    current_customer.cart_items.each do |cart_item| #カート内商品を1つずつ取り出しループ
+      @ordered_item = OrderDetail.new #初期化宣言
+      @ordered_item.order_id =  @order.id #order注文idを紐付けておく
+      @ordered_item.item_id = cart_item.item_id #カート内商品idを注文商品idに代入
+      @ordered_item.quantity = cart_item.amount #カート内商品の個数を注文商品の個数に代入
+      @ordered_item.price = (cart_item.item.price*1.08).floor #消費税込みに計算して代入
+      @ordered_item.save
+    end
+    redirect_to public_orders_complete_path
+    cart_items.destroy_all
+# ユーザーに関連するカートのデータ(購入したデータ)をすべて削除します(カートを空にする)
+  else
+    @order = Order.new(order_params)
+    render :new
   end
+end
 
   def index
   end
@@ -18,18 +33,38 @@ class Public::OrdersController < ApplicationController
   end
 
   def check
-    @cart_items = current_customer.cart_items.all
-    @shipping_fee = 800
-    ary = []
-      @cart_items.each do |cart_item|
-    ary << cart_item.item.price * cart_item.amount
-      @cart_items_price = ary.sum
-      @total_price = @shipping_fee + @cart_items_price
+       @order = Order.new(order_params)
+    #  [:address_option]=="0"のデータ(memberの住所)を呼び出す
+        if params[:order][:address_option] == "0"
+        @order.postcode = current_customer.postcode
+        @order.address = current_customer.address
+        @order.address_name = current_customer.family_name + current_customer.first_name
+          elsif params[:order][:address_option] == "1"
+            @address = Address.find(params[:order][:order_address])
 
-        @selected_pay_method = params[:peyment_method]
-        @selected_address = current_customer.postcode + " " + current_customer.address + " " + current_customer.family_name + current_customer.first_name
-    end
+            @order.postcode = @address.postcode
+            @order.address = @address.address
+            @order.address_name = @address.name
+
+            elsif params[:order][:address_option] = "2"
+              @order.postcode = params[:order][:postcode]
+              @order.address = params[:order][:address]
+              @order.address_name = params[:order][:name]
+            else
+            render 'new'
+        end
+        @cart_items = current_customer.cart_items.all
+        @shipping_fee = 800
+         ary = []
+      @cart_items.each do |cart_item|
+        ary << cart_item.item.price*cart_item.amount
+      end
+      @cart_items_price = ary.sum
+      @selected_pay_method = params[:order][:payment_method]
+      @total_price = @shipping_fee + @cart_items_price
   end
+
+
 
   def complete
   end
@@ -37,7 +72,7 @@ class Public::OrdersController < ApplicationController
 private
 
 def order_params
-  params.permit(:address_name, :address, :postcode, :payment_method, :billing_amount)
+  params.require(:order).permit(:address_name, :address, :postcode, :payment_method, :billing_amount, :postage)
 end
 
 def address_params
