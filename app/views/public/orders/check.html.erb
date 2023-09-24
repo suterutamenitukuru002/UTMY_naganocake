@@ -41,4 +41,17 @@
     <% end %>
 
       <h4><b>お届け先</b></h4>
-        <%= @selected_address %>
+        <%= @order.postcode %>
+        <%= @order.address %>
+        <%= @order.address_name %>
+        <br>
+          <%= form_with model: @order, url: public_orders_create_path do |f| %>
+          <%= f.hidden_field :address_name, :value => @order.address_name %>
+          <%= f.hidden_field :address, :value => @order.address %>
+          <%= f.hidden_field :postcode, :value => @order.postcode %>
+          <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+          <%= f.hidden_field :billing_amount, :value => @total_price %>
+          <%= f.hidden_field :postage, :value => @shipping_fee %>
+
+          <%= f.submit "注文を確定する", class: "btn btn-primary" %>
+          <% end %>
