@@ -9,6 +9,10 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
+    if params[:cart_item][:amount] == ""
+      redirect_to item_path(params[:cart_item][:item_id])
+      return
+    end
     @cart_item = current_customer.cart_items.new(params_cart_item)
     if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
       cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
