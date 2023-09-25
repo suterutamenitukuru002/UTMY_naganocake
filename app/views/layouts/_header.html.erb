@@ -4,7 +4,7 @@
     <!--ロゴ部分-->
     <nav class="nav navbar-nav navbar-left">
       <% if admin_signed_in? %>
-        <%= link_to image_tag("logos.png",width: '40%', height: '105%', class: "image"), admin_homes_top_path %>
+        <%= link_to image_tag("logos.png",width: '40%', height: '105%', class: "image"), admin_root_path %>
       <% else %>
         <%= link_to image_tag("logos.png",width: '40%', height: '120%', class: "image"), root_path %>
       <% end %>
@@ -25,19 +25,12 @@
         <!--管理者がログインしている時 -->
           <li><%= link_to image_tag("Sweets.png",size:'70x70'),admin_items_path %></li>
           <li><%= link_to image_tag("Custmer.png",size:'70x70'),admin_customers_path %></li>
-          <!--<li><%#= link_to "注文履歴一覧",  %></li>-->
+          <li><%= link_to "注文履歴一覧", admin_root_path %></li>
           <li><%= link_to image_tag("Genre.png",size:'70x70'),admin_genres_path %></li>
           <li><%= link_to image_tag("Logout.png",size:'70x70'),destroy_admin_session_path, method: :delete %></li>
 
 
-    <% elsif admin_signed_in? %>
-
-    <li><%= link_to "商品一覧", admin_items_path  %></li>
-    <li><%= link_to "会員一覧", admin_customers_path %></li>
-    <li><%= link_to "注文履歴一覧", admin_homes_top_path %></li>
-    <li><%= link_to "ジャンル一覧", admin_genres_path %></li>
-    <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-
+    <
 
 
         <% else %>
