@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :orders,only: [:index,:create,:new, :show]
     get 'orders/complete'
     post 'orders/create'
+    post 'orders/check'
   end
 
 
