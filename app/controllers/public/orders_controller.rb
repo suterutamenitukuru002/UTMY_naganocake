@@ -27,9 +27,14 @@ def create
 end
 
   def index
+    @orders = current_customer.orders.latest
+    @cart_items = current_customer.cart_items.all
   end
 
   def show
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details.all
+    @address = @order.postcode + @order.address + @order.address_name
   end
 
   def check
@@ -57,7 +62,7 @@ end
         @shipping_fee = 800
          ary = []
       @cart_items.each do |cart_item|
-        ary << cart_item.item.price*cart_item.amount
+        ary << (cart_item.item.price*1.1 *cart_item.amount).floor
       end
       @cart_items_price = ary.sum
       @selected_pay_method = params[:order][:payment_method]
