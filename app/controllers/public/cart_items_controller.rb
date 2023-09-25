@@ -32,7 +32,6 @@ class Public::CartItemsController < ApplicationController
   #   redirect_to cart_items_path
   @cart_item.update(params_cart_item)
    redirect_to cart_items_path
-
   end
 
   def destroy
