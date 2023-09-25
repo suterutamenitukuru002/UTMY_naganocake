@@ -9,7 +9,7 @@ class Public::ItemsController < ApplicationController
       elsif params[:price_low]
         @sort = Item.price_low
       else
-        @sort = Item.all
+        @sort = Item.page(params[:page])
     end
   end
 

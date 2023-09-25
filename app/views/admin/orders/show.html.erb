@@ -19,7 +19,7 @@
  <td>
  <%= form_with model: @orders, url: admin_order_path(@orders), method: :patch do |f| %>
  <%#= f.select :order_status, Order.order_statuses.keys.to_a, {}, class: 'form-control' %>
- <%= f.select :order_status ,Order.order_statuses_i18n %>
+ <%= f.select :order_status ,Order.order_statuses_i18n.invert %>
  <%= f.submit '更新', class:"btn btn-outline-success" %>
  </td>
  <% end %>
@@ -53,7 +53,7 @@
  <td>
  <%= form_with model: order_details, url: admin_order_detail_path(order_details) do |f| %>
  <%#= f.select :maiking_status, Order_details.maiking_statuses_i18n.invert, {}, class: 'form-control' %>
- <%= f.select :maiking_status ,OrderDetail.making_statuses_i18n.invert %>
+ <%= f.select :making_status ,OrderDetail.making_statuses_i18n.invert %>
  <%= f.submit "更新", class: 'btn btn-info' %>
  <% end %>
  </td>
