@@ -1,4 +1,4 @@
-<div class="container">
+div class="container">
   <div class="d-flex align-items-end" style="height:60px;">
     <h2>ショッピングカート</h2>
   </div>
@@ -44,26 +44,6 @@
         <button class="btn btn-outline-danger">カートを空にする</button>
       <% end %>
   　</div>
-  　<br>
-  　<table class="table">
-  　    <thead>
-  　        <th>商品名</th>
-  　        <th>単価（税込）</th>
-  　        <th>数量</th>
-  　        <th>小計</th>
-  　        <th></th>
-  　    </thead>
-  　    <% @cart_items.each do |cart_item| %>
-  　     <tr>
-  　      <td>
-  　        <%= image_tag cart_item.item.image, format:'jpeg', fallback:"no_image.jpg", size:"50x50" %>
-  　        <%= cart_item.item.name %>
-  　      </td>
-  　      <td>
-  　        ¥<%= (cart_item.item.price*1.1 ).floor.to_s(:delimited) %>
-  　      </td>
-  　      <td>
-  　        <%= form_with model: cart_item do |f| %>
 
       <table class="table">
         <tr>
