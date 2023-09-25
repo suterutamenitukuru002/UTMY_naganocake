@@ -7,6 +7,7 @@ class Public::OrdersController < ApplicationController
 def create
   cart_items = current_customer.cart_items.all
   @order = current_customer.orders.new(order_params)
+  @order.order_status = 0
   if @order.save!
 
     current_customer.cart_items.each do |cart_item| #カート内商品を1つずつ取り出しループ
