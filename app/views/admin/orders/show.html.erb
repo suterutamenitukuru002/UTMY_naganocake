@@ -13,12 +13,13 @@
 
 <tbody>
  <td><%= @orders.address_name %></td>
-  <td><%= @orders.created_at.strftime('%Y/%m/%d') %></td>
+ <td><%= @orders.created_at.strftime('%Y/%m/%d') %></td>
  <td><%= @orders.address %></td>
- <td><%= @orders.payment_method %></td>
+ <td><%= @orders.payment_method_i18n %></td>
  <td>
- <%= form_with model:@order, url: admin_order_path(@order), method: :patch do |f| %>
- <%= f.select :order_status, order.order_statuses.keys.to_a, {}, class: 'form-control' %>
+ <%= form_with model: @orders, url: admin_order_path(@orders), method: :patch do |f| %>
+ <%#= f.select :order_status, Order.order_statuses.keys.to_a, {}, class: 'form-control' %>
+ <%= f.select :order_status ,Order.order_statuses_i18n %>
  <%= f.submit '更新', class:"btn btn-outline-success" %>
  </td>
  <% end %>
@@ -32,7 +33,7 @@
  <thead>
   <tr>
   <th>商品名</th>
-  <th>単価（税込）</th>
+  <th>単価(税込)</th>
   <th>数量</th>
   <th>小計</th>
   <th>製作ステータス</th>
@@ -40,34 +41,41 @@
  </thead>
 
 <tbody>
- <td><%= @order_derails.item.name %></td>
-  <td><%= @order_derails.price %></td>
- <td><%= @order_derails.quantity %></td>
- <td><%= @order_derails.price %>*<%= @order_derails.quantity %></td>
- <td><%= @order_derails.making_status %></td>
+ <% @order_details.each do |order_details| %>
+
+<% @sum = 0 %>
+<% @sum += order_details.item.with_tax_price %>
+ <tr>
+ <td><%= order_details.item.name %></td>
+ <td><%= ((order_details.price).floor).to_s(:delimited) %></td>
+ <td><%= order_details.quantity %></td>
+ <td><%= ((order_details.price * order_details.quantity).floor).to_s(:delimited) %></td>
  <td>
- <%= form_with model: [:admin, @order_derails] do |f| %>
- <%= f.select :maiking_status, Order_details.maiking_statuses_i18n.invert, {}, class: 'form-control' %>
+ <%= form_with model: order_details, url: admin_order_detail_path(order_details) do |f| %>
+ <%#= f.select :maiking_status, Order_details.maiking_statuses_i18n.invert, {}, class: 'form-control' %>
+ <%= f.select :maiking_status ,OrderDetail.making_statuses_i18n.invert %>
  <%= f.submit "更新", class: 'btn btn-info' %>
+ <% end %>
  </td>
  <% end %>
+ </tr>
 </tbody>
-
 </table>
 
+
 <table class="table">
- .
-  <tr>
-  <th>商品合計</th>
-  <th>送料</th>
-  <th>請求金額合計</th>
-  </tr>
-  <tbody>
-  <tr><% @order_derails.each do |order_derails| %></tr>
-  <td></td>
-  <td><%= order.postage %></td>
-  <td><%= order.billing_amount %></td>
 
-  </tbody>
-
+ <tr>
+        <td>商品合計</td>
+        <td><%= ((@orders.billing_amount - 800).floor).to_s(:delimited) %>円</td>
+      </tr>
+      <tr>
+        <td>送料</td>
+        <td>800円</td>
+      </tr>
+      <tr>
+        <td>請求金額合計</td>
+        <td><%= ((@orders.billing_amount).floor).to_s(:delimited) %>円</td>
+      </tr>
+  </table>
 
