@@ -1,7 +1,16 @@
 class Public::ItemsController < ApplicationController
   def index
-    @items, @sort = get_items(params)
     @genres = Genre.all
+
+     if params[:latest]
+      @sort = Item.latest
+      elsif params[:price_high]
+        @sort = Item.price_high
+      elsif params[:price_low]
+        @sort = Item.price_low
+      else
+        @sort = Item.all
+    end
   end
 
   def show
@@ -9,15 +18,5 @@ class Public::ItemsController < ApplicationController
     @cart_item = CartItem.new
   end
 
-
-
-  private
-  # 最新情報、価格の高い順、価格の低い順の処理
-  def get_items(params)
-    return Item.all, 'default' unless params[:latest] || params[:price_high_to_low] || params[:price_low_to_high]
-    return Item.latest, 'latest' if params[:latest]
-    return Item.price_high_to_low, 'price_high_to_low' if params[:price_high_to_low]
-    return Item.price_low_to_high, 'price_low_to_high' if params[:price_low_to_high]
-  end
 
 end
