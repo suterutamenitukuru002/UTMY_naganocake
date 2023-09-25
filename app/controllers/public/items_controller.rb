@@ -1,6 +1,6 @@
 class Public::ItemsController < ApplicationController
   def index
-    @items, @sort = get_items(params)
+    @items, @sort = get_items.page(params[:page])
     @genres = Genre.all
   end
 
@@ -13,7 +13,7 @@ class Public::ItemsController < ApplicationController
 
   private
   # 最新情報、価格の高い順、価格の低い順の処理
-  def get_items(params)
+  def get_items.page(params)
     return Item.all, 'default' unless params[:latest] || params[:price_high_to_low] || params[:price_low_to_high]
     return Item.latest, 'latest' if params[:latest]
     return Item.price_high_to_low, 'price_high_to_low' if params[:price_high_to_low]
