@@ -3,13 +3,13 @@ class Public::ItemsController < ApplicationController
     @genres = Genre.all
 
      if params[:latest]
-      @sort = Item.latest
+      @items = Item.latest
       elsif params[:price_high]
-        @sort = Item.price_high
+        @items = Item.price_high
       elsif params[:price_low]
-        @sort = Item.price_low
+        @items = Item.price_low
       else
-        @sort = Item.all
+        @items = Item.all.page(params[:page])
     end
   end
 
