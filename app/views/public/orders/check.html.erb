@@ -1,44 +1,66 @@
-<h3>注文情報確認</h3>
-  <table class ="table">
-    <th>商品名</th>
-    <th>単価(税込)</th>
-    <th>数量</th>
-    <th>小計</th>
-    
+<div class = "container">
+  <div class = "row">
+    <div class = "col-7">
+      <h3>注文情報確認</h3>
+
+    <table class ="table">
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+
       <% @cart_items.each do |cart_item| %>
         <tr>
           <td>
-            <%= image_tag cart_item.item.image, size: "100x100" %>
+            <%= image_tag cart_item.item.image, size: "120x100" %>
             <strong><%= cart_item.item.name %></strong>
           </td>
-          <td><%= cart_item.item.price %></td>
+          <td>¥<%= (cart_item.item.price * 1.1).floor.to_s(:delimited) %></td>
           <td><%= cart_item.amount %></td>
-          <td><%= cart_item.item.price * cart_item.amount %></td>
+          <td>¥<%= (cart_item.item.price * 1.1).floor * cart_item.amount %></td>
+
         </tr>
       <% end %>
     </table>
-    
+<div class = "col-5">
       <table class="table">
       <tr>
         <td>送料</td>
-        <td><%= @shipping_fee %></td>
+        <td><%= @shipping_fee %>円</td>
       </tr>
       <tr>
         <td>商品合計</td>
-        <td><%= @cart_items_price %></td>
+        <td><%= @cart_items_price %>円</td>
       </tr>
       <tr>
         <td>請求金額</td>
-        <td><%= @total_price %></td>
+        <td><%= @total_price %>円</td>
       </tr>
     </table>
-    
   　<h4><b>支払方法</b></h4>
   　  <% if @selected_pay_method == "credit_card" %>
       クレジットカード
     <% else %>
       銀行振込
     <% end %>
-      
+
       <h4><b>お届け先</b></h4>
-        <%= @selected_address %>
+        <%= @order.postcode %>
+        <%= @order.address %>
+        <%= @order.address_name %>
+        <br>
+          <%= form_with model: @order, url: public_orders_path do |f| %>
+          <%= f.hidden_field :address_name, :value => @order.address_name %>
+          <%= f.hidden_field :address, :value => @order.address %>
+          <%= f.hidden_field :postcode, :value => @order.postcode %>
+          <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+          <%= f.hidden_field :billing_amount, :value => @total_price %>
+          <%= f.hidden_field :postage, :value => @shipping_fee %>
+
+          <%= f.submit "注文を確定する", class: "btn btn-primary" %>
+          <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
