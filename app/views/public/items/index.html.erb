@@ -2,34 +2,32 @@
   <div class="row">
     <div class="col-md-3">
       <%= render 'public/homes/genre' %>
+          <!--最新、高価格、低価格のボタン設置-->
+
+    <div class="col-3">
+      <div class = "text-center">
+      <b>sort</b>
+        <%= link_to 'Newest', items_path(latest: "true") %>
+        <%= link_to 'Price: High', items_path(price_high: "true") %>
+        <%= link_to 'Price: Low', items_path(price_low: "true") %>
+      </div>
+    </div>
     </div>
     <div class="col-md-9">
       <h1 class="product-title">
         <% if params[:genre_id] %>
           <%= @genre.name %>
         <% else %>
-          すべての商品
+        <div class="d-flex align-items-end" style="height:60px;">
+          <h3>すべての商品</h3>
+        </div>
         <% end %>
       </h1>
-      <strong> 全<%= @items.count %>件 </strong>
-    </div>
+      <strong> 全<%= @sort.count %>件 </strong>
 
-    <!--最新、高価格、低価格のボタン設置-->
-    <div class="col-3">
-      <div class="mb-3 w-fit text-md font-medium mr-2 px-4 py-1.5 rounded <%= @sort === "latest" ? "bg-gray-800 text-gray-100" : "bg-gray-100 text-gray-800" %>">
-        <%= link_to 'Latest', items_path(latest: true) %>
-      </div>
-      <div class="mb-3 w-fit text-md font-medium mr-2 px-4 py-1.5 rounded <%= @sort === "price_high_to_low" ? "bg-gray-800 text-gray-100" : "bg-gray-100 text-gray-800" %>">
-        <%= link_to 'Price: High to Low', items_path(price_high_to_low: true) %>
-      </div>
-      <div class="mb-3 w-fit text-md font-medium mr-2 px-4 py-1.5 rounded <%= @sort === "price_low_to_high" ? "bg-gray-800 text-gray-100" : "bg-gray-100 text-gray-800" %>">
-        <%= link_to 'Price: Low to High', items_path(price_low_to_high: true) %>
-      </div>
-    </div>
-
-    <!--画像横並び-->
       <!--繰り返し処理が必要-->
-      <% @items.each do |item| %>
+      <div class = "row">
+      <% @sort.each do |item| %>
       <div class = "col-3">
         <%# if item.genre.is_sale_status == true %>
           <div>
@@ -43,7 +41,13 @@
         <!--<%# end %>-->
       <% end %>
       <!--ページネーションが必要-->
+
       <%= paginate @items %>
+
+      <%#= paginate @items %>
+      </div>
+      </div>
+
   </div>
 </div>
 

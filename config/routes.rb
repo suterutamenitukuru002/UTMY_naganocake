@@ -12,10 +12,7 @@ Rails.application.routes.draw do
 
   # 注文情報
   namespace :public do
-    get 'orders/new'
-    get 'orders/index'
-    get 'orders/show'
-    post 'orders/check'
+    resources :orders,only: [:index,:create,:new, :show]
     get 'orders/complete'
     post 'orders/create'
   end
