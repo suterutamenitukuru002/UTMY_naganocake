@@ -9,7 +9,9 @@ Bundler.require(*Rails.groups)
 module NaganocakeUtmy
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.i18n.default_locale = :ja
     config.load_defaults 6.1
+
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -18,5 +20,7 @@ module NaganocakeUtmy
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.time_zone = 'Tokyo'
   end
+
 end

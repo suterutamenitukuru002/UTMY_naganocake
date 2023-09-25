@@ -1,8 +1,26 @@
 # frozen_string_literal: true
 
 class Public::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_permitted_parameters, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+
+  #サインアップ後の遷移先を指定する方法
+  def after_sign_up_path_for(resource)
+    #遷移先のパス
+    public_customers_mypage_path
+  end
+
+  def update
+    @customer = Customer.all
+      if @customer.update(mypage_params)
+        flash[:notice] = "You have updated mypage successfully."
+        redirect_to public_customers_mypage_path
+      else
+      render :edit
+      end
+  end
+  
+  
 
   # GET /resource/sign_up
   # def new
@@ -59,4 +77,11 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+   protected
+
+     def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:family_name, :first_name, :family_name_kana, :first_name_kana,:email, :postcode, :telephone_number, :address])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:family_name, :first_name, :family_name_kana, :first_name_kana,:email, :postcode, :telephone_number, :address])
+     end
 end
