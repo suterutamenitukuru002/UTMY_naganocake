@@ -6,13 +6,13 @@ class Admin::OrderDetailsController < ApplicationController
 
    is_updated = true
     if @order_details.update(order_detail_params)
-       @order.update(status: "制作中") if @order_details.making_status == "制作中"
+       @order.update(making_status: "制作中") if @order_details.making_status == "制作中"
        @order_detail.each do |order_detail|
           if order_detail.making_status != "制作完了"
             is_updated = false
           end
     end
-       @order.update(status: "発送準備中") if is_updated
+       @order.update(making_status: "発送準備中") if is_updated
     end
    redirect_to admin_order_path(@order_details.order)
   end
