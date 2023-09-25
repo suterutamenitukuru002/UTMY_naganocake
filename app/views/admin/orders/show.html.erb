@@ -43,8 +43,6 @@
 <tbody>
  <% @order_details.each do |order_details| %>
 
-<% @sum = 0 %>
-<% @sum += order_details.item.with_tax_price %>
  <tr>
  <td><%= order_details.item.name %></td>
  <td><%= ((order_details.price).floor).to_s(:delimited) %></td>
