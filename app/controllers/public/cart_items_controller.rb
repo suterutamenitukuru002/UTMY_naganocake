@@ -10,9 +10,11 @@ class Public::CartItemsController < ApplicationController
 
   def create
     if params[:cart_item][:amount] == ""
+      #もし数量が空だったら、同じページに遷移する
       redirect_to item_path(params[:cart_item][:item_id])
       return
     end
+
     @cart_item = current_customer.cart_items.new(params_cart_item)
     if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
       cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
@@ -30,7 +32,6 @@ class Public::CartItemsController < ApplicationController
   #   redirect_to cart_items_path
   @cart_item.update(params_cart_item)
    redirect_to cart_items_path
-
   end
 
   def destroy
