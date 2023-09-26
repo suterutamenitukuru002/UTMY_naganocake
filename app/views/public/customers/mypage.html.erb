@@ -1,12 +1,12 @@
 <div class="container">
   <div class = "row">
     <div class ="col-lg-4">
-      <table>
-        <tr>
-          <td><h4><b>登録情報</b></h4></td>
-          <td><%= link_to "編集する", public_customers_edit_path, class: 'btn btn-success'%></td>
-        </tr>
+        <div class="d-flex align-items-end" style="height:50px;">
+          <h4><b>登録情報</b></h4>
+          </div>
+            <%= link_to "編集する", public_customers_edit_path, class: 'btn btn-success'%>
 
+              <table>
                 <tr>
                   <td>配送先</td>
                   <td><%= link_to "一覧を見る", addresses_path, class: 'btn btn-info' %></td>
