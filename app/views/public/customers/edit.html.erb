@@ -1,12 +1,12 @@
 <div class="container">
-<div class="d-flex align-items-end" style="height:50px;">
-<h4><b>会員情報編集</b></h4>
-</div>
-<div class = "row">
-<div class = "col-8">
-<%= form_with model: @customer,url:public_customers_infomation_path, local:true do |f| %>
+  <div class="d-flex align-items-end" style="height:50px;">
+    <h4><b>会員情報編集</b></h4>
+  </div>
 
-<table class='table'>
+    <%= form_with model: @customer,url:public_customers_infomation_path, local:true do |f| %>
+      <div class = "row">
+        <div class = "col-8">
+          <table class='table'>
 
   <tr>
     <div class="field">
@@ -61,9 +61,9 @@
         </div>
           <div class="d-flex align-items-end">
              <%= link_to "退会する", public_customers_check_path, class: "btn btn-danger ms-3" %>
-           </div>
-<% end %>
+          </div>
       </div>
-    </div>
-  <%= image_tag 'line_sweets.png',size:'10,30' %>
+    <% end %>
+  </div>
+    <%= image_tag 'line_sweets.png',size:'10,30' %>
 </div>

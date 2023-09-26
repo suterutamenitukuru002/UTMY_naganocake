@@ -13,24 +13,24 @@
           </div>
         <% end %>
       </h1>
-      <strong> 全<%= @sort.count %>件 </strong>
+      <strong> 全<%= @items.count %>件 </strong>
+
       <!--繰り返し処理が必要-->
       <div class = "row">
-        <% @sort.each do |item| %>
+        <% @items.each do |item| %>
           <div class = "col-3">
             <%# if item.genre.is_sale_status == true %>
-            <div>
-              <%= link_to item_path(item) do %>
-                <%= image_tag item.image, fallback: 'no_image.jpg', size: "190x150" %><br>
-              <% end %>
-              <%= item.name %><br>
-              ¥<%= (item.price*1.1).floor.to_s(:delimited)%>(税込)
-            </div>
+              <div>
+                <%= link_to item_path(item) do %>
+                  <%= image_tag item.image, fallback: 'no_image.jpg', size: "190x150" %><br>
+                <% end %>
+                <%= item.name %><br>
+                ¥<%= (item.price*1.1).floor.to_s(:delimited)%>(税込)
+              </div>
+            <%# end %>
           </div>
-          <!--<%# end %>-->
         <% end %>
-        <!--ページネーションが必要-->
-        <%= paginate @sort %>
+        <%= paginate @items %>
       </div>
     </div>
   </div>
