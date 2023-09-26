@@ -1,8 +1,8 @@
 <div class = "container">
-  <div class = "row">
-    <div class = "col-lg-4">
-      <h4><b>注文情報入力</b></h4>
-        <%= form_with model: @order, url: public_orders_check_path, method: :post do |f| %>
+  <h4><b>注文情報入力</b></h4>
+    <%= form_with model: @order, url: public_orders_check_path, method: :post do |f| %>
+      <div class = "row">
+        <div class = "col-lg-4">
           <h4><b>支払方法</b></h4>
           <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
           <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
