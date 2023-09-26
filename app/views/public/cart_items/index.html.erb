@@ -10,6 +10,7 @@
   　          <th>単価（税込）</th>
   　          <th>数量</th>
   　          <th>小計</th>
+  　          <th></th>
   　        </thead>
   　          <% @cart_items.each do |cart_item| %>
         　     <tr>
@@ -37,37 +38,34 @@
     </table>
   </div>
 
-   <div class="col-4">
-     <table class="table">
+  <div class="col-4">
+    <table class="table">
       <tr>
-       <div class="d-flex align-items-end" style="height:36px;">
-        <th class="active">合計金額</th>
-        <td><%#= cart_item.total_price.to_i %>¥<%= @total.floor.to_s(:delimited) %></td>
-       </div>
+        <div class="d-flex align-items-end" style="height:24px;">
+          <th class="active">合計金額</th>
+            <td><%#= cart_item.total_price.to_i %>¥<%= @total.floor.to_s(:delimited) %></td>
+        </div>
       </tr>
-     </table>
-
-     <div class="text-center">
-      <% if current_customer.cart_items.any? %>
-      <%= link_to new_public_order_path do %>
-      <button class="btn btn-lg btn-success">情報入力に進む</button>
-      <% end %>
-      <% end %>
-     </div>
-   </div>
-   <% end %>
+    </table>
 
     <div class="text-center">
-     <%= link_to root_path do %>
-     <button class="btn btn-primary">買い物を続ける</button>
-     <% end %>
-    </div>
-
-     <div class="text-center">
-      <%= link_to cart_items_path, method: :delete do %>
-      <button class="btn btn-outline-danger">カートを空にする</button>
+      <% if current_customer.cart_items.any? %>
+        <%= link_to new_public_order_path do %>
+          <button class="btn btn-lg btn-success">情報入力に進む</button>
+        <% end %>
       <% end %>
-     </div>
+    </div>
+  </div>
 
- </div>
+    <div class="text-center">
+      <%= link_to root_path do %>
+         <button class="btn btn-primary">買い物を続ける</button>
+       <% end %>
+    </div>
+     <div class="text-center">
+       <%= link_to cart_items_path, method: :delete do %>
+         <button class="btn btn-outline-danger">カートを空にする</button>
+       <% end %>
+     </div>
+  </div>
 </div>
