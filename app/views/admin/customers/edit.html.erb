@@ -1,11 +1,9 @@
+<div class="container">
 <h1><%= @customers.full_name %>さんの会員情報編集</h1>
 <%= form_with model: @customers, url:admin_customer_path(@customers), method: :patch, local: true do |f| %>
 
 <table class='table'>
 
-<th></th>
-<th></th>
-<th></th>
 　<tr>
 　 <div class="field">
 　 <td>会員ID</td>
@@ -68,3 +66,4 @@
   </div>
 
 <% end %>
+</div>
