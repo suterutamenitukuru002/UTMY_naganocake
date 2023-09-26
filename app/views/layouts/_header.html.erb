@@ -9,6 +9,12 @@
         <%= link_to image_tag("logos.png",width: '40%', height: '120%', class: "image"), root_path %>
       <% end %>
 
+     <div class="d-flex align-items-end" style="height:60px;">
+      <%= form_with  do |f| %>
+      <%= f.text_field :word %>
+      <%= f.submit "検索", class: "btn-sm btn-primary" %>
+      <% end %>
+    </div>
      </nav>
       <ul class="navbar-nav ml-auto">
         <% if customer_signed_in? %>
@@ -29,10 +35,6 @@
           <li><%= link_to image_tag("Genre.png",size:'70x70'),admin_genres_path %></li>
           <li><%= link_to image_tag("Logout.png",size:'70x70'),destroy_admin_session_path, method: :delete %></li>
 
-
-    <
-
-
         <% else %>
           <!--カスタマーがログインしていない時-->
           <li><%= link_to image_tag("About.png",size:'70x80'),homes_about_path %></li>
@@ -44,5 +46,6 @@
     </ul>
   </div>
 </div>
+
 </nav>
 
