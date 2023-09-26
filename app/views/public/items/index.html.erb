@@ -23,11 +23,11 @@
         </div>
         <% end %>
       </h1>
-      <strong> 全<%= @sort.count %>件 </strong>
+      <strong> 全<%= @items.count %>件 </strong>
 
       <!--繰り返し処理が必要-->
       <div class = "row">
-      <% @sort.each do |item| %>
+      <% @items.each do |item| %>
       <div class = "col-3">
         <%# if item.genre.is_sale_status == true %>
           <div>
@@ -40,11 +40,10 @@
       </div>
         <!--<%# end %>-->
       <% end %>
-      <!--ページネーションが必要-->
-      <%= paginate @sort %>
-      </div>
-      </div>
+      <%= paginate @items %>
 
+      </div>
+    </div>
   </div>
 </div>
 
