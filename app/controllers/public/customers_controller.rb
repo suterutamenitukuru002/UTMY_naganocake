@@ -1,4 +1,4 @@
-class Public::CustomersController < ApplicationController
+  class Public::CustomersController < ApplicationController
   def mypage
     @customer = current_customer
   end
@@ -35,4 +35,4 @@ class Public::CustomersController < ApplicationController
     params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana,:email, :postcode, :telephone_number, :address)
   end
 
-end
+  end
