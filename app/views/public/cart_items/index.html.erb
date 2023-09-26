@@ -48,9 +48,10 @@
      </table>
 
      <div class="text-center">
-      <%# if current_customer.cart_items.any? %>
+      <% if current_customer.cart_items.any? %>
       <%= link_to new_public_order_path do %>
       <button class="btn btn-lg btn-success">情報入力に進む</button>
+      <% end %>
       <% end %>
      </div>
    </div>
@@ -66,5 +67,6 @@
       <button class="btn btn-outline-danger">カートを空にする</button>
       <% end %>
      </div>
+
  </div>
 </div>
