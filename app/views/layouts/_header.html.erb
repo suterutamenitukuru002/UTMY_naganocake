@@ -1,51 +1,52 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-light">
 <div class="container">
-  <div class="row">
-
-    <!--ロゴ部分-->
-    <nav class="nav navbar-nav">
-      <% if admin_signed_in? %>
-        <%= link_to image_tag("logos.png",width: '50%', height: '140%', class: "image"), admin_root_path %>
-      <% else %>
-        <%= link_to image_tag("logos.png",width: '50%', height: '140%', class: "image"), root_path %>
-      <% end %>
-    </nav>
-
-      <ul class="navbar-nav ml-auto">
-        <% if customer_signed_in? %>
-          <!--カスタマーがログインしている時-->
-          <div class="d-flex align-items-end" style="height:50px;">
-            <li>ようこそ、<%= current_customer.family_name %>さん！</li>
-          </div>
-          <li><%= link_to image_tag("mypage2.png",size:'70x80'),public_customers_mypage_path(current_customer) %></li>
-          <li><%= link_to image_tag("Sweets.png",size:'70x80'),items_path %></li>
-          <li><%= link_to image_tag("Cart.png",size:'70x80'), cart_items_path %></li>
-          <li><%= link_to image_tag("Logout.png",size:'70x80'),destroy_customer_session_path, method: :delete %></li>
-
-        <% elsif admin_signed_in? %>
-        <!--管理者がログインしている時 -->
-          <li><%= link_to image_tag("Sweets.png",size:'70x70'),admin_items_path %></li>
-          <li><%= link_to image_tag("Custmer.png",size:'70x70'),admin_customers_path %></li>
-          <li><%= link_to image_tag("Orderhistory.png",size:'70x70'),admin_root_path %></li>
-          <li><%= link_to image_tag("Genre.png",size:'70x70'),admin_genres_path %></li>
-          <li><%= link_to image_tag("Logout.png",size:'70x70'),destroy_admin_session_path, method: :delete %></li>
+ <div class="row">
 
 
+  <!--ロゴ部分-->
+  <nav class="nav navbar-nav">
+   <% if admin_signed_in? %>
+    <%= link_to image_tag("logos.png",width: '50%', height: '140%', class: "image"), admin_root_path %>
+   <% else %>
+    <%= link_to image_tag("logos.png",width: '50%', height: '140%', class: "image"), root_path %>
+   <% end %>
+  </nav>
+
+   <ul class="navbar-nav ml-auto">
+    <% if customer_signed_in? %>
+     <!--カスタマーがログインしている時-->
+     <div class="d-flex align-items-end" style="height:50px;">
+      <li>ようこそ、<%= current_customer.family_name %>さん！</li>
+     </div>
+     <li><%= link_to image_tag("mypage2.png",size:'70x80'),public_customers_mypage_path(current_customer) %></li>
+     <li><%= link_to image_tag("Sweets.png",size:'70x80'),items_path %></li>
+     <li><%= link_to image_tag("Cart.png",size:'70x80'), cart_items_path %></li>
+     <li><%= link_to image_tag("Logout.png",size:'70x80'),destroy_customer_session_path, method: :delete %></li>
+
+    <% elsif admin_signed_in? %>
+    <!--管理者がログインしている時 -->
+     <li><%= link_to image_tag("Sweets.png",size:'70x70'),admin_items_path %></li>
+     <li><%= link_to image_tag("Custmer.png",size:'70x70'),admin_customers_path %></li>
+     <li><%= link_to image_tag("Orderhistory.png",size:'70x70'),admin_root_path %></li>
+     <li><%= link_to image_tag("Genre.png",size:'70x70'),admin_genres_path %></li>
+     <li><%= link_to image_tag("Logout.png",size:'70x70'),destroy_admin_session_path, method: :delete %></li>
 
 
-        <% else %>
-          <!--カスタマーがログインしていない時-->
-          <li><%= link_to image_tag("About.png",size:'70x80'),homes_about_path %></li>
-          <li><%= link_to image_tag("Sweets.png",size:'70x80'),items_path %></li>
-          <li><%= link_to image_tag("Signup.png",size:'70x80'),new_customer_registration_path %></li>
-          <li><%= link_to image_tag("Log-in.png",size:'70x80'),new_customer_session_path %></li>
-        <% end %>
 
-      </ul>
-    </ul>
-    <div class = "navbar-nav ml-auto">
-      <%= image_tag 'search1', size: '270x45' %>
-    </div>
+
+    <% else %>
+     <!--カスタマーがログインしていない時-->
+     <li><%= link_to image_tag("About.png",size:'70x80'),homes_about_path %></li>
+     <li><%= link_to image_tag("Sweets.png",size:'70x80'),items_path %></li>
+     <li><%= link_to image_tag("Signup.png",size:'70x80'),new_customer_registration_path %></li>
+     <li><%= link_to image_tag("Log-in.png",size:'70x80'),new_customer_session_path %></li>
+    <% end %>
+
+   </ul>
+  </ul>
+  <div class = "navbar-nav ml-auto">
+   <%= image_tag 'search1', size: '270x45' %>
   </div>
+ </div>
 </div>
 </nav>
