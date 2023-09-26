@@ -21,7 +21,7 @@ class Admin::CustomersController < ApplicationController
     end
   end
 
-   def is_withdraw
+  def is_withdraw
     @customer = Customer.find(current_customer.id)
     # is_deletedカラムをtrueに変更することにより削除フラグを立てる
     @customer.update(is_deleted: true)
@@ -33,6 +33,6 @@ class Admin::CustomersController < ApplicationController
 
 private
  def customer_params
-  params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :email, :postcode, :telephone_number, :address)
+  params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :email, :postcode, :telephone_number, :address, :is_deleted)
  end
 end

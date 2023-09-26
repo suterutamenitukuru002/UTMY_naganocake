@@ -32,7 +32,7 @@ class Public::CustomersController < ApplicationController
 
   private
   def mypage_params
-    params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana,:email, :postcode, :telephone_number, :address)
+    params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :email, :postcode, :telephone_number, :address)
   end
 
 end
