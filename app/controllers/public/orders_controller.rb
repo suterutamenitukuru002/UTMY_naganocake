@@ -4,24 +4,11 @@ class Public::OrdersController < ApplicationController
     @addresses = current_customer.addresses.all
   end
 
-    def create
-      cart_items = current_customer.cart_items.all
-      @order = current_customer.orders.new(order_params)
-      @order.order_status = 0
-      if @order.save!
-
-class Public::OrdersController < ApplicationController
-  def new
-    @order = Order.new
-    @addresses = current_customer.addresses.all
-  end
-
-    def create
-      cart_items = current_customer.cart_items.all
-      @order = current_customer.orders.new(order_params)
-      @order.order_status = 0
-      if @order.save!
-
+def create
+  cart_items = current_customer.cart_items.all
+  @order = current_customer.orders.new(order_params)
+  @order.order_status = 0
+  if @order.save
       current_customer.cart_items.each do |cart_item| #カート内商品を1つずつ取り出しループ
         @ordered_item = OrderDetail.new #初期化宣言
         @ordered_item.order_id =  @order.id #order注文idを紐付けておく
