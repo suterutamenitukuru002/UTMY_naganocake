@@ -1,8 +1,8 @@
 class Public::OrdersController < ApplicationController
- def new
-  @order = Order.new
-  @addresses = current_customer.addresses.all
- end
+  def new
+    @order = Order.new
+    @addresses = current_customer.addresses.all
+  end
 
 def create
   cart_items = current_customer.cart_items.all
@@ -25,19 +25,19 @@ def create
     end
     @cart_items = current_customer.cart_items.all
     @shipping_fee = 800
-     ary = []
-   @cart_items.each do |cart_item|
-    ary << (cart_item.item.price*1.1 *cart_item.amount).floor
-   end
-   @cart_items_price = ary.sum
-   @selected_pay_method = params[:order][:payment_method]
-   @total_price = @shipping_fee + @cart_items_price
-end
+      ary = []
+    @cart_items.each do |cart_item|
+      ary << (cart_item.item.price*1.1 *cart_item.amount).floor
+    end
+    @cart_items_price = ary.sum
+    @selected_pay_method = params[:order][:payment_method]
+    @total_price = @shipping_fee + @cart_items_price
+  end
 
- def index
- @orders = current_customer.orders.latest
- @cart_items = current_customer.cart_items.all
- end
+  def index
+    @orders = current_customer.orders.latest
+    @cart_items = current_customer.cart_items.all
+  end
 
  def show
  @order = Order.find(params[:id])
