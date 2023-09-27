@@ -12,9 +12,8 @@ Rails.application.routes.draw do
 
   # 注文情報
   namespace :public do
-    resources :orders,only: [:index,:create,:new, :show]
     get 'orders/complete'
-    post 'orders/create'
+    resources :orders,only: [:index,:create,:new, :show]
     post 'orders/check'
   end
 

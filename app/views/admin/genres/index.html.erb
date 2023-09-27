@@ -1,4 +1,7 @@
+<div class="container">
+<div class='mx-auto col-md-7'>
 <h1>ジャンル一覧・追加</h1>
+
 <%= form_with model: @genre, url:'/admin/genres', method: :post, local: true do |f| %>
 <div class="form-group">
     <%= f.label :ジャンル名 %>
@@ -12,7 +15,6 @@
 
  <thead>
   <tr>
-  <th></th>
   <th>ジャンル</th>
   </tr>
  </thead>
@@ -20,8 +22,12 @@
 <tbody>
  <tr><% @genres.each do |genre| %></tr>
  <td><%= genre.name %></td>
- <td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: 'btn btn-default' %></td>
+ <td align="right"><%= link_to "編集する", edit_admin_genre_path(genre.id), class: 'btn btn-success' %></td>
  <% end %>
 </tbody>
 
+
 </table>
+</div>
+<%= image_tag 'line_sweets.png',size:'10,30' %>
+</div>

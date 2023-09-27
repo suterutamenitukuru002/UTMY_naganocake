@@ -1,5 +1,6 @@
+<div class="container-xl">
 <h1>注文履歴一覧</h1>
-　<table class="table">
+ <table class="table">
 
  <thead>
   <tr>
@@ -15,9 +16,13 @@
  <td><%= link_to order.created_at.strftime('%Y/%m/%d'), admin_order_path(order.id) %></td>
  <td><%= order.customer.full_name %></td>
  <td><%= order.order_details.sum(:quantity)  %></td>
- <td><%= order.order_status %></td>
+ <td><%= order.order_status_i18n %></td>
 
  <% end %>
 </tbody>
 
 </table>
+
+  <%= image_tag 'line_sweets.png',size:'10,30' %>
+</div>
+

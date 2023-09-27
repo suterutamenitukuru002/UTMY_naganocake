@@ -1,6 +1,12 @@
+
+<div class="container">
 <h1>商品一覧</h1>
-<%= link_to "新規投稿", new_admin_item_path %>
-<div class='mx-auto col-md-10'>
+<%= link_to new_admin_item_path, class: "btn" do %>
+  <i class="pull-righ fa-solid fa-plus"></i>
+ <% end %>
+
+
+
 <table class='table table-hover table-inverse'>
   <thead>
     <tr>
@@ -17,12 +23,12 @@
       <tr>
         <td><%= item.id %></td>
         <td><%= link_to item.name,admin_item_path(item.id) %></td>
-        <td><%= item.price %></td>
+        <td><%= item.price %>円</td>
         <td><%= item.genre.name %></td>
         <td><% if item.is_sale_status == true %>
         <p class="text-success">販売中</p>
         <% else %>
-        <p class="text-danger">販売停止</p>
+        <p class="text-danger">販売停止中</p>
         <% end %>
         </td>
     <% end %>
@@ -31,4 +37,7 @@
   </tbody>
 </table>
 <%= paginate @items %>
+
+
+<%= image_tag 'line_sweets.png',size:'10,30' %>
 </div>
