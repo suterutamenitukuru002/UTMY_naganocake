@@ -20,7 +20,7 @@
           <h5><b>登録済住所からの選択</b></h5>
             <%= f.radio_button  :address_option, 1 %>
             <%= f.label :addresses, "登録済住所" %>
-            <%= f.select :order_address, options_from_collection_for_select(Address.all, :id, :address_display) %>
+            <%= f.select :order_address, options_from_collection_for_select(@addresses, :id, :address_display) %>
 
             <br>
                 <%= f.radio_button  :address_option, 2 %>

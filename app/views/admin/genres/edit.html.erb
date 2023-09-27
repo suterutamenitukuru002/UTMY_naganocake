@@ -1,17 +1,16 @@
 <div class="container">
-<div class='col-md-7'>
-<table class="table">
-<h1>ジャンル編集</h1>
-<tr>
-<%= form_with model: [:admin, @genre], local:true do |f| %>
-<td><%= f.label :ジャンル名 %></td>
-<td><%= f.text_field :name, class: 'form-control' %></td>
-<td class="form-group">
-    <%= f.submit "変更を保存", class: 'btn btn-info' %>
-</td>
-<% end %>
-</tr>
-</table>
-</div>
-<%= image_tag 'Cutlery.png',size:'10,30' %>
+  <div class='mx-auto col-md-5'>
+    <h1>ジャンル編集</h1>
+      <tr>
+        <%= form_with model: [:admin, @genre], local:true do |f| %>
+          <div class="form-group">
+            <%= f.label :ジャンル名 %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+            <div class="form-group">
+              <%= f.submit "変更を保存", class: 'btn btn-info' %>
+            </div>
+              <% end %>
+  </div>
+  <%= image_tag 'Cutlery.png',size:'10,30' %>
 </div>
