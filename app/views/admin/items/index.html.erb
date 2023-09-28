@@ -2,7 +2,7 @@
 <div class="container">
 <h1>商品一覧</h1>
 <%= link_to new_admin_item_path, class: "btn" do %>
-  <i class="fa-solid fa-circle-plus"></i>
+  <i class="pull-righ fa-solid fa-plus"></i>
  <% end %>
 
 
@@ -28,7 +28,7 @@
         <td><% if item.is_sale_status == true %>
         <p class="text-success">販売中</p>
         <% else %>
-        <p class="text-danger">販売停止</p>
+        <p class="text-danger">販売停止中</p>
         <% end %>
         </td>
     <% end %>

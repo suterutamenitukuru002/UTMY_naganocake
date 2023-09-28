@@ -3,10 +3,16 @@
     <div class='col-md-3'>
       <%= render 'public/homes/genre' %>
     </div>
-    <div class="col-lg-9">
-      <div>
-        <%= image_tag 'sweets2.jpg', size: '830x250' %>
-      </div>
+      <div class="col-lg-9">
+
+        <div class="slider">
+            <%= image_tag 'sweets2.jpg' %>
+            <%= image_tag 'sweets3.png' %>
+            <%= image_tag 'sweets4.png' %>
+        </div>
+
+
+
       <h3>新着情報</h3>
 <div class = "row">
         <% @ramdom.each do |item| %>

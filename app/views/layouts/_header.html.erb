@@ -1,13 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-light">
 <div class="container">
-  <div class="row">
-    <!--ロゴ部分-->
-    <nav class="nav navbar-nav navbar-left">
-      <% if admin_signed_in? %>
-        <%= link_to image_tag("logos.png",width: '40%', height: '105%', class: "image"), admin_items_path %>
-      <% else %>
-        <%= link_to image_tag("logos.png",width: '40%', height: '120%', class: "image"), root_path %>
-      <% end %>
+ <div class="row">
+
+
+  <!--ロゴ部分-->
+  <nav class="nav navbar-nav">
+   <% if admin_signed_in? %>
+    <%= link_to image_tag("logos.png",width: '50%', height: '140%', class: "image"), admin_root_path %>
+   <% else %>
+    <%= link_to image_tag("logos.png",width: '50%', height: '140%', class: "image"), root_path %>
+   <% end %>
   </nav>
 
    <ul class="navbar-nav ml-auto">
